@@ -4,6 +4,7 @@ import InputFields from './components/InputFields';
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./modules/auth";
 import DisplayPerformanceData from "./components/DisplayPerformanceData"
+import { Button, Modal } from 'semantic-ui-react'
 
 class App extends Component {
   state = {
@@ -45,13 +46,13 @@ class App extends Component {
       case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
-            <button
+            <Button
               id="login"
               onClick={() => this.setState({ renderLoginForm: true })}
             >
               Login
-            </button>
-            <p id="message">{message}</p>
+            </Button> 
+             <p id="message">{message}</p>
           </>
         );
         break;
@@ -66,12 +67,13 @@ class App extends Component {
                 updateIndex={this.state.updateIndex}
                 indexUpdated={() => this.setState({ updateIndex: false })}
               />
-              <button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
+              <Button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
             </>
           )
         } else {
           performanceDataIndex = (
-            <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
+            <Button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
+            
           )
         }
       }
