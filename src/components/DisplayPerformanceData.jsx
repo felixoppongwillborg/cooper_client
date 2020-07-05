@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getData } from "../modules/performanceData";
-import {Bar} from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
 
 class DisplayPerformanceData extends Component {
   state = {
@@ -42,13 +42,9 @@ class DisplayPerformanceData extends Component {
           {
             data: distances,
             label: "saved distance",
-            backgroundColor: 'rgba(147, 186, 183)',
-            borderColor: 'rgba(147, 186, 183)',
-            borderWidth: 5,
-            hoverBackgroundColor: 'rgba(101, 166, 161)',
-            hoverBorderColor: 'rgba(101, 166, 161)',
-            Width: 10,
-            height: 10
+            backgroundColor: "rgba(147, 186, 183)",
+            hoverBackgroundColor: "rgba(101, 166, 161)",
+            hoverBorderColor: "rgba(101, 166, 161)",
           },
         ],
       };

@@ -4,7 +4,7 @@ import InputFields from './components/InputFields';
 import LoginForm from "./components/LoginForm";
 import { authenticate } from "./modules/auth";
 import DisplayPerformanceData from "./components/DisplayPerformanceData"
-import { Button, Modal } from 'semantic-ui-react'
+import { Button } from "semantic-ui-react";
 
 class App extends Component {
   state = {
@@ -15,14 +15,14 @@ class App extends Component {
     authenticated: false,
     message: "",
     entrySaved: false,
-    renderIndex: false
+    renderIndex: false,
   };
 
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value, entrySaved: false });
   };
 
-  onLogin = async e => {
+  onLogin = async (e) => {
     e.preventDefault();
     const response = await authenticate(
       e.target.email.value,
@@ -39,7 +39,7 @@ class App extends Component {
     const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
     let performanceDataIndex;
-    switch(true) {
+    switch (true) {
       case renderLoginForm && !authenticated:
         renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
         break;
@@ -51,14 +51,16 @@ class App extends Component {
               onClick={() => this.setState({ renderLoginForm: true })}
             >
               Login
-            </Button> 
-             <p id="message">{message}</p>
+            </Button>
+            <p id="message">{message}</p>
           </>
         );
         break;
       case authenticated:
         renderLogin = (
-          <p id="message">Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+          <p id="message">
+            Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}
+          </p>
         );
         if (this.state.renderIndex) {
           performanceDataIndex = (
@@ -67,31 +69,48 @@ class App extends Component {
                 updateIndex={this.state.updateIndex}
                 indexUpdated={() => this.setState({ updateIndex: false })}
               />
-              <Button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</Button>
+              <Button onClick={() => this.setState({ renderIndex: false })}>
+                Hide past entries
+              </Button>
             </>
-          )
+          );
         } else {
           performanceDataIndex = (
-            <Button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</Button>
-            
-          )
+            <Button
+              id="show-index"
+              onClick={() => this.setState({ renderIndex: true })}
+            >
+              Show past entries
+            </Button>
+          );
         }
-      }
+    }
 
     return (
-      <>
-      <InputFields onChangeHandler={this.onChangeHandler} />
-      {renderLogin}
-      <DisplayCooperResult
-      distance={this.state.distance}
-      gender={this.state.gender}
-      age={this.state.age}
-      authenticated={this.state.authenticated}
-      entrySaved={this.state.entrySaved}
-      entryHandler={() => this.setState({ entrySaved: true, updateIndex: true })}
-    />
-        {performanceDataIndex}
-      </>
+      <div class="ui vertical center aligned segment">
+        <div class="ui content container center aligned">
+        <h1 class="ui header">Cooper Test!</h1>
+        <p id="bodyText">
+        The Cooper 12 minute run is a popular maximal running test of aerobic fitness, in which participants try and cover as much distance as they can in 12 minutes.
+        </p>
+
+          <>
+            <InputFields onChangeHandler={this.onChangeHandler} />
+            {renderLogin}
+            <DisplayCooperResult
+              distance={this.state.distance}
+              gender={this.state.gender}
+              age={this.state.age}
+              authenticated={this.state.authenticated}
+              entrySaved={this.state.entrySaved}
+              entryHandler={() =>
+                this.setState({ entrySaved: true, updateIndex: true })
+              }
+            />
+            {performanceDataIndex}
+          </>
+        </div>
+        </div>
     );
   }
 }

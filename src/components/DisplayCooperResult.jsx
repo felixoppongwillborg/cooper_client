@@ -1,22 +1,20 @@
 import React from "react";
 
-import cooperCalculator from "../modules/cooperCalculator"
+import cooperCalculator from "../modules/cooperCalculator";
 import { saveData } from "../modules/performanceData";
-import { Button } from 'semantic-ui-react'
+import { Button, Message } from "semantic-ui-react";
 
-
-const DisplayCooperResult = ({ 
-  distance, 
-  gender, 
-  age, 
-  authenticated, 
-  entrySaved, 
-  entryHandler 
+const DisplayCooperResult = ({
+  distance,
+  gender,
+  age,
+  authenticated,
+  entrySaved,
+  entryHandler,
 }) => {
   const result = cooperCalculator(distance, gender, age);
 
-
-const propsPassed = distance && age ? true : false;
+  const propsPassed = distance && age ? true : false;
 
   return (
     <>
