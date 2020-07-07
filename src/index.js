@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import axios from "axios";
 
 
-axios.defaults.baseURL = "https://mighty-woodland-02554.herokuapp.com/"
+axios.defaults.baseURL = "https://mighty-woodland-02554.herokuapp.com/api/v1"
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
